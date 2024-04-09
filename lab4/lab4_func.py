@@ -123,7 +123,7 @@ def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 
 	#solve theta2
 	d_3end=np.sqrt(x3end**2 + y3end**2)
-	theta2_1 = np.arctan((z3end-L1)/ d_3end)
+	theta2_1 = np.arctan2((z3end-L1), d_3end)
 	theta2_2 = np.arcsin(np.sin(theta3_1) * L5 / d_c)
 	theta2 = -(theta2_1 + theta2_2)
 	
