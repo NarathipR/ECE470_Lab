@@ -95,8 +95,9 @@ def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 	#solve theta1
 	theta1_1=np.arctan2(y_cen,x_cen)
 	d_a=np.sqrt(y_cen**2+x_cen**2)
-	d_b=L6+0.027 #parallel
-	theta1_2=np.arctan2(d_b,np.sqrt(d_a**2-d_b**2))
+	d_b=L6+0.027 
+	d_ab=np.sqrt(d_a**2-d_b**2)
+	theta1_2=np.arctan2(d_b,d_ab)
 	theta1=theta1_1-theta1_2
 
 	#solve theta6
@@ -104,11 +105,11 @@ def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 
 	#solve x3end,y3end,z3end
 	z3end=z_cen+L10+L8
-	vector_xy=np.array([-L7,-(L6+0.027),1])
+	d_xy=np.array([-L7,-(L6+0.027),1])
 	Trans_M=np.array([[np.cos(theta1),-np.sin(theta1),x_cen],\
 				 	[np.sin(theta1),np.cos(theta1),y_cen],\
 					[0,0,1]])
-	trans_pt=Trans_M@vector_xy
+	trans_pt=Trans_M@d_xy
 	x3end=trans_pt[0]
 	y3end=trans_pt[1]
 	
