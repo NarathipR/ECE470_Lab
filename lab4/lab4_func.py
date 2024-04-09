@@ -114,15 +114,16 @@ def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 	y3end=trans_pt[1]
 	
 	#solve theta3
-	origin = np.array([0,0,L1])
-	d_c = (np.array([x3end,y3end,z3end]) - origin)
+	joint_1 = np.array([0,0,L1])
+	d_c = (np.array([x3end,y3end,z3end]) - joint_1)
 	d_c = np.linalg.norm(d_c)
 	
 	theta3_1 = np.arccos((d_c**2 - L3**2 - L5**2)/(-2*L3*L5))
 	theta3 = np.pi - theta3_1
 
 	#solve theta2
-	theta2_1 = np.arctan((z3end-L1)/ (np.sqrt(x3end**2 + y3end**2)))
+	d_3end=np.sqrt(x3end**2 + y3end**2)
+	theta2_1 = np.arctan((z3end-L1)/ d_3end)
 	theta2_2 = np.arcsin(np.sin(theta3_1) * L5 / d_c)
 	theta2 = -(theta2_1 + theta2_2)
 	
